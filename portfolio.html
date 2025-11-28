@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio - Renzo Moreira</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-body: #cfd3d6;
+            --bg-card: #fdfdfd;
+            --bg-dark: #111111;
+            --accent-red: #ff4d38;
+            --gap: 16px;
+            --radius: 16px;
+            --font-main: 'Instrument Sans', sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: var(--bg-body);
+            font-family: var(--font-main);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            overflow-x: hidden;
+            letter-spacing: -0.02em; 
+        }
+        a { text-decoration: none; color: inherit; }
+
+        .bento-grid {
+            width: 100%; max-width: 1400px; height: 90vh;
+            display: grid;
+            grid-template-columns: 2.5fr 1fr 1fr 1fr 2fr;
+            grid-template-rows: 80px 1fr 40px;
+            gap: var(--gap);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card, .project-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            opacity: 0; 
+            animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.15s; }
+        .card:nth-child(3) { animation-delay: 0.2s; }
+        .card:nth-child(4) { animation-delay: 0.25s; }
+        .card:nth-child(5) { animation-delay: 0.3s; }
+        
+        /* Delays Portfolio */
+        .project-card:nth-child(1) { animation-delay: 0.35s; }
+        .project-card:nth-child(2) { animation-delay: 0.38s; }
+        .project-card:nth-child(3) { animation-delay: 0.41s; }
+        .project-card:nth-child(4) { animation-delay: 0.44s; }
+        .project-card:nth-child(5) { animation-delay: 0.47s; }
+        .project-card:nth-child(n+6) { animation-delay: 0.5s; }
+        .card:last-child { animation-delay: 0.6s; }
+
+        /* Header Styles */
+        .logo-box { 
+            background-color: #9ca3a6; 
+            justify-content: center; 
+            padding-left: 0; 
+        }
+        .logo-text { font-size: 2rem; font-weight: 700; color: #444; text-transform: uppercase; letter-spacing: -1.5px; }
+        
+        .nav-item { font-size: 0.85rem; font-weight: 600; color: #333; text-transform: uppercase; transition: 0.2s; cursor: pointer; letter-spacing: -0.01em; }
+        .nav-item:hover { background-color: #eaeaea; }
+        .nav-active { background-color: #eaeaea; box-shadow: inset 0 0 0 2px #333; }
+        .btn-contato { background-color: var(--bg-dark); color: white; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; cursor: pointer; }
+        .star-icon { position: absolute; top: 10px; right: 12px; color: var(--accent-red); }
+        
+        .footer-ticker {
+            grid-column: 1 / 6; background-color: var(--bg-dark); color: #444;
+            justify-content: center; padding-left: 0;
+            font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;
+        }
+
+        /* --- PORTFOLIO GRID --- */
+        .portfolio-grid {
+            grid-column: 1 / 6;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: var(--gap);
+            overflow: hidden;
+        }
+
+        .project-card {
+            background-color: #eee;
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+        .project-card:hover { transform: scale(0.98); }
+
+        .project-info {
+            position: absolute; bottom: 0; left: 0; right: 0; padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white; opacity: 0; transition: opacity 0.3s;
+            display: flex; flex-direction: column; justify-content: flex-end; height: 100%;
+        }
+        .project-card:hover .project-info { opacity: 1; }
+
+        .p-title { font-weight: 700; font-size: 1.2rem; margin-bottom: 4px; letter-spacing: -0.02em; }
+        .p-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-red); font-weight: 600; }
+
+        /* --- IMAGENS DE CAPA --- */
+        
+        .p1 { background-image: url('img/Representações_Página_01.png'); background-color: #333; } 
+        .p2 { background-image: url('img/_EXT10Telão.png'); background-color: #444; }
+        .p3 { background-image: url('img/05-QAC.png'); background-color: #555; }
+        .p4 { background-image: url('img/04-LOT.png'); background-color: #666; }
+        .p5 { background-image: url('img/09-ORVE.png'); background-color: #777; }
+        .p6 { background-image: url('img/04-JAD.png'); background-color: #888; }
+        .p7 { background-image: url('img/01-PF.png'); background-color: #999; }
+        .p8 { background-image: url('img/cm-01.png'); background-color: #aaa; }
+        .p9 { background-image: url('img/capareels.png'); background-color: #bbb; }
+
+        /* --- MOBILE --- */
+        @media (max-width: 1024px) {
+            body { height: auto; padding: 15px; align-items: flex-start; }
+            .bento-grid { display: grid; height: auto; grid-template-columns: 1fr 1fr; grid-template-rows: auto; gap: 12px; }
+            .logo-box { grid-column: 1 / -1; height: 70px; justify-content: center; padding-left: 0; }
+            .logo-text { font-size: 1.5rem; }
+            .nav-item { grid-column: span 1; height: 60px; }
+            .btn-contato { grid-column: span 1; height: 60px; }
+
+            .portfolio-grid {
+                grid-column: 1 / -1;
+                grid-template-columns: 1fr 1fr;
+                /* Linhas automáticas para caber 9 itens */
+                grid-template-rows: repeat(auto-fill, 200px);
+                gap: 12px;
+            }
+            /* Garante altura mínima para os cards no mobile */
+            .project-card { min-height: 200px; }
+            
+            .project-info { opacity: 1; background: linear-gradient(to top, rgba(0,0,0,0.6), transparent); }
+            .p-title { font-size: 1rem; }
+            .footer-ticker { grid-column: 1 / -1; margin-top: 10px; height: 50px; font-size: 0.7rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bento-grid">
+        <a href="index.html" class="card logo-box"><span class="logo-text">RENZO MOREIRA</span></a>
+        <a href="sobre.html" class="card nav-item">SOBRE MIM</a>
+        <a href="experiencias.html" class="card nav-item">EXPERIÊNCIAS</a>
+        <a href="portfolio.html" class="card nav-item nav-active">PORTFÓLIO</a>
+        <a href="contato.html" class="card btn-contato">CONTATO <div class="star-icon">✻</div></a>
+
+        <div class="portfolio-grid">
+            
+            <a href="projeto-thiago.html" class="project-card p1">
+                <div class="project-info"><span class="p-label">Identidade Visual</span><span class="p-title">Thiago Franco & ICOMM</span></div>
+            </a>
+            
+            <a href="projeto-extrator.html" class="project-card p2">
+                <div class="project-info"><span class="p-label">Identidade Visual</span><span class="p-title">O Extrator</span></div>
+            </a>
+            
+            <a href="projeto-cookies.html" class="project-card p3">
+                <div class="project-info"><span class="p-label">Identidade Visual</span><span class="p-title">Quem Ama Cookies</span></div>
+            </a>
+            
+            <a href="projeto-loteamento.html" class="project-card p4">
+                <div class="project-info"><span class="p-label">Identidade Visual</span><span class="p-title">Loteamento Espanha</span></div>
+            </a>
+            
+            <a href="projeto-orve.html" class="project-card p5">
+                <div class="project-info"><span class="p-label">Identidade Visual</span><span class="p-title">Orve Semijoias</span></div>
+            </a>
+            
+            <a href="projeto-jadson.html" class="project-card p6">
+                <div class="project-info"><span class="p-label">Identidade Visual</span><span class="p-title">Jadson Vasconcelos</span></div>
+            </a>
+            
+            <a href="projeto-policastro.html" class="project-card p7">
+                <div class="project-info"><span class="p-label">Branding</span><span class="p-title">Policastro & Ferreira</span></div>
+            </a>
+            
+            <a href="projeto-comunicadores.html" class="project-card p8">
+                <div class="project-info"><span class="p-label">Identidade Visual</span><span class="p-title">Comunicadores Magnéticos</span></div>
+            </a>
+            
+            <a href="projeto-videos.html" class="project-card p9">
+                <div class="project-info"><span class="p-label">Edição</span><span class="p-title">Vídeos Reels</span></div>
+            </a>
+            
+        </div>
+
+        <div class="card footer-ticker">Site por Renzo Moreira© - 2025 - todos os direitos reservados</div>
+    </div>
+</body>
+</html>
