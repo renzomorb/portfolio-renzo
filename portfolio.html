@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio - Renzo Moreira</title>
+    <title>Portfólio - Renzo Moreira</title> 
+
+<link rel="icon" href="img/favicon.png" type="image/png">
+
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -88,10 +91,17 @@
         .btn-contato { background-color: var(--bg-dark); color: white; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; cursor: pointer; }
         .star-icon { position: absolute; top: 10px; right: 12px; color: var(--accent-red); }
         
+        /* Footer Centralizado */
         .footer-ticker {
-            grid-column: 1 / 6; background-color: var(--bg-dark); color: #444;
-            justify-content: center; padding-left: 0;
-            font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;
+            grid-column: 1 / 6;
+            background-color: var(--bg-dark);
+            color: #444;
+            justify-content: center;
+            padding-left: 0;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         /* --- PORTFOLIO GRID --- */
@@ -99,10 +109,16 @@
             grid-column: 1 / 6;
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            grid-template-rows: repeat(2, 1fr);
+            /* Importante: linhas automáticas */
+            grid-auto-rows: 1fr; 
             gap: var(--gap);
-            overflow: hidden;
+            overflow-y: auto; /* Permite scroll se houver muitos projetos */
+            padding-right: 5px;
         }
+        
+        /* Scrollbar sutil para o grid */
+        .portfolio-grid::-webkit-scrollbar { width: 4px; }
+        .portfolio-grid::-webkit-scrollbar-thumb { background-color: #ccc; border-radius: 4px; }
 
         .project-card {
             background-color: #eee;
@@ -111,6 +127,7 @@
             cursor: pointer;
             transition: transform 0.3s;
             text-decoration: none;
+            min-height: 250px; /* Altura mínima PC */
         }
         .project-card:hover { transform: scale(0.98); }
 
@@ -125,7 +142,7 @@
         .p-title { font-weight: 700; font-size: 1.2rem; margin-bottom: 4px; letter-spacing: -0.02em; }
         .p-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-red); font-weight: 600; }
 
-        /* --- IMAGENS DE CAPA --- */
+        /* --- IMAGENS DE CAPA (ATUALIZADAS) --- */
         
         .p1 { background-image: url('img/Representações_Página_01.png'); background-color: #333; } 
         .p2 { background-image: url('img/_EXT10Telão.png'); background-color: #444; }
@@ -136,6 +153,11 @@
         .p7 { background-image: url('img/01-PF.png'); background-color: #999; }
         .p8 { background-image: url('img/cm-01.png'); background-color: #aaa; }
         .p9 { background-image: url('img/capareels.png'); background-color: #bbb; }
+        
+        /* Novos Projetos */
+        .p10 { background-image: url('img/CAPA-dyno.png'); background-color: #333; }
+        .p11 { background-image: url('img/divino-01.jpg'); background-color: #444; } /* .jpg corrigido */
+        .p12 { background-image: url('img/01-casa.png'); background-color: #555; }
 
         /* --- MOBILE --- */
         @media (max-width: 1024px) {
@@ -148,16 +170,23 @@
 
             .portfolio-grid {
                 grid-column: 1 / -1;
-                grid-template-columns: 1fr 1fr;
-                /* Linhas automáticas para caber 9 itens */
-                grid-template-rows: repeat(auto-fill, 200px);
+                grid-template-columns: 1fr 1fr; /* 2 Colunas */
+                grid-auto-rows: auto; /* Altura flexível */
                 gap: 12px;
+                overflow: visible;
+                padding-right: 0;
             }
-            /* Garante altura mínima para os cards no mobile */
-            .project-card { min-height: 200px; }
+            
+            .project-card {
+                min-height: auto; /* Reseta altura mínima */
+                aspect-ratio: 1 / 1; /* Força ser quadrado no mobile */
+                height: auto;
+            }
             
             .project-info { opacity: 1; background: linear-gradient(to top, rgba(0,0,0,0.6), transparent); }
-            .p-title { font-size: 1rem; }
+            .p-title { font-size: 0.9rem; }
+            .p-label { font-size: 0.6rem; }
+            
             .footer-ticker { grid-column: 1 / -1; margin-top: 10px; height: 50px; font-size: 0.7rem; }
         }
     </style>
@@ -208,9 +237,21 @@
                 <div class="project-info"><span class="p-label">Edição</span><span class="p-title">Vídeos Reels</span></div>
             </a>
             
+            <a href="projeto-dyno.html" class="project-card p10">
+                <div class="project-info"><span class="p-label">Identidade Visual</span><span class="p-title">Dyno Club</span></div>
+            </a>
+            
+            <a href="projeto-divino.html" class="project-card p11">
+                <div class="project-info"><span class="p-label">Identidade Visual</span><span class="p-title">Divino Pastel</span></div>
+            </a>
+            
+            <a href="projeto-casarao.html" class="project-card p12">
+                <div class="project-info"><span class="p-label">Social Media</span><span class="p-title">Comunidade Casarão</span></div>
+            </a>
+            
         </div>
 
-        <div class="card footer-ticker">Site por Renzo Moreira© - 2025 - todos os direitos reservados</div>
+        <div class="card footer-ticker">STUDIO MORB - 2025 - TODOS OS DIREITOS RESERVADOS</div>
     </div>
 </body>
 </html>
